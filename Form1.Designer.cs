@@ -38,6 +38,7 @@
             this.colorRadioButton2 = new PaintApp.ColorRadioButton();
             this.colorRadioButton3 = new PaintApp.ColorRadioButton();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -78,6 +79,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDel);
             this.groupBox2.Controls.Add(this.btnClear);
             this.groupBox2.Controls.Add(this.btnSelectMode);
             this.groupBox2.Location = new System.Drawing.Point(641, 274);
@@ -150,13 +152,22 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(6, 48);
+            this.btnClear.Location = new System.Drawing.Point(5, 48);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 24);
             this.btnClear.TabIndex = 3;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(6, 78);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(75, 23);
+            this.btnDel.TabIndex = 4;
+            this.btnDel.Text = "Delete";
+            this.btnDel.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -190,6 +201,7 @@
         private ColorRadioButton colorRadioButton3;
         private ColorRadioButton colorRadioButton2;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnDel;
     }
 }
 
