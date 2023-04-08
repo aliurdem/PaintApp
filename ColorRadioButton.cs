@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PaintApp
 {
-    internal class ColorRadioButton : RadioButton
+    public class ColorRadioButton : RadioButton
     {
         public ColorRadioButton()
         {
