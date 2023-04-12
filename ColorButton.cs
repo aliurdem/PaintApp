@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,9 +8,9 @@ using System.Windows.Forms;
 
 namespace PaintApp
 {
-    internal class ColorButton : Button
+    internal class ShapeRadioButton : RadioButton
     {
-        public ColorButton()
+        public ShapeRadioButton()
         {
             this.Text = "";
         }
@@ -25,6 +26,15 @@ namespace PaintApp
             {
                 parentForm.currentColor = this.BackColor;
             }
+        }
+
+        public void Shine() { 
+            this.FlatAppearance.BorderSize = 2;
+            this.FlatAppearance.BorderColor = Color.Red;
+        }
+        public void Dark() {
+            this.FlatAppearance.BorderSize = 2;
+            this.FlatAppearance.BorderColor = Color.Red;
         }
     }
 }

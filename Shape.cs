@@ -2,33 +2,76 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace PaintApp
 {
-    internal abstract class Shape
+    public abstract class Shape
     {
-        private int x;
-        private int y;
-        private int width;
-        private int height;
-        private Color shapeColor;
+        public string Type { get; set; }
+        public int X { get; set; }
+        public int Y{ get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public Color ShapeColor { get; set; }
+        public bool IsMoving { get; set; } = false;
+        public bool IsSelected { get; set; } = false;
+        
+
+        public Shape() 
+        {
+        }
+
 
         public Shape(Color color)
         {
             X = Y = 0;
-            Width = Height = 0;
-            shapeColor = color;
+            Height = Width = 0;
+            ShapeColor = color;
         }
-
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
-        public int Width { get => width; set => width = value; }
-        public int Height { get => height; set => height = value; }
-        public Color ShapeColor { get => shapeColor; set => shapeColor = value; }
 
         // Her şeklin sahip olması gereken çizdirme fonksyonu
         public abstract void Draw(Graphics g);
+
+        public bool Contains(Point point)
+        {
+            return X <= point.X && point.X <= X + Width && Y <= point.Y && point.Y <= Y + Width;
+        }
+        
+        public void Move(int dx, int dy)
+        {
+            X += dx;
+            Y += dy;
+        }
+
+        public void Save(XmlElement element)
+        {
+            element.SetAttribute("Type", Type);
+            element.SetAttribute("X", X.ToString());
+            element.SetAttribute("Y", Y.ToString());
+            element.SetAttribute("Width", Width.ToString());
+            element.SetAttribute("Height", Height.ToString());
+            element.SetAttribute("Color", new ColorConverter().ConvertToString(ShapeColor));
+
+        }
+
+        public void Load(XmlNode node)
+        {
+            Type = node.Attributes["Type"].Value;
+            X = int.Parse(node.Attributes["X"].Value);
+            Y = int.Parse(node.Attributes["Y"].Value);
+            Width = int.Parse(node.Attributes["Width"].Value);
+            Height = int.Parse(node.Attributes["Height"].Value);
+
+            string colorString = node.Attributes["Color"].Value;
+            ShapeColor = (Color)new ColorConverter().ConvertFromString(colorString);
+
+        }
+
+
     }
+
 }
