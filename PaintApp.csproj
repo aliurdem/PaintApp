@@ -47,9 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Circle.cs" />
-    <Compile Include="ColorButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ColorRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
