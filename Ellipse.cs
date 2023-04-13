@@ -8,16 +8,16 @@ using System.Xml;
 
 namespace PaintApp
 {
-    internal class Circle : Shape
+    internal class Ellipse : Shape
 
     {
-        public Circle() 
+        public Ellipse() 
         {
             Type = "Ellipse";
 
         }
 
-        public Circle(Color color) : base(color)
+        public Ellipse(Color color) : base(color)
         {
             Type = "Ellipse";
 
@@ -30,7 +30,7 @@ namespace PaintApp
             g.FillEllipse(brush, X, Y, Width,Height);
             if (this.IsSelected)
             {
-                SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Red)); // 50% şeffaflıkta mavi renk fırça
+                SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Green)); // 50% şeffaflıkta mavi renk 
                 g.FillRectangle(selectedBrush, X - 5, Y - 5, Width + 10, Height + 10);
             }
         }

@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Circle.cs" />
+    <Compile Include="Ellipse.cs" />
     <Compile Include="ColorRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -59,24 +59,25 @@
     <Compile Include="Hexagon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeRadioButon.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Square.cs" />
+    <Compile Include="Rectangle.cs" />
     <Compile Include="Triangle.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -89,6 +90,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Red-Triangle-Flat-icon-Medium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rectangle-tool-icon-Orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hexagon-icon-Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Purple-Circle-Flat-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hands-One-Finger-icon-Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-icon %281%29-Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page-edit-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floppy-drive-3-12-icon-SMALL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Documents-icon %281%29-Small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,7 +30,7 @@ namespace PaintApp
             }
 
             parentForm.drawingMode = true;
-            parentForm.drawAre.Invalidate();
+            parentForm.Canvas.Invalidate();
 
         }
 
@@ -38,11 +38,11 @@ namespace PaintApp
         {
             if (this.Checked)
             {
-                this.FlatAppearance.BorderColor = Color.Red;
+                this.FlatAppearance.BorderColor = Color.Gray;
             }
             else
             {
-                this.FlatAppearance.BorderColor = Color.Gray;
+                this.FlatAppearance.BorderColor = Color.White;
             }
 
         }

@@ -13,6 +13,10 @@ namespace PaintApp
         public ColorRadioButton()
         {
             this.Appearance = Appearance.Button;
+            this.AutoSize = false; 
+            this.FlatStyle = FlatStyle.Flat;
+            this.FlatAppearance.BorderSize = 2;
+            this.FlatAppearance.BorderColor = Color.White; 
             Text = "";
         }
         //ColorRadioButton sınıfın kendi has OnClick özelliği üzerine tıklandığında ait olduğu Form1 türünden formun currentColor özelliğini raadioButtonıun arka plan rengili ile değiştirir 
@@ -26,7 +30,7 @@ namespace PaintApp
                 parentForm.currentColor = this.BackColor;
                 if (parentForm.selectedShape != null) {
                     parentForm.selectedShape.ShapeColor = this.BackColor;
-                    parentForm.drawAre.Invalidate();
+                    parentForm.Canvas.Invalidate();
                     
                 }
 
@@ -38,10 +42,10 @@ namespace PaintApp
         {
             if (this.Checked)
             {
-                this.FlatAppearance.BorderColor = Color.Red;
+                this.FlatAppearance.BorderColor = Color.DarkGray;
             }
             else {
-                this.FlatAppearance.BorderColor = Color.Gray;   
+                this.FlatAppearance.BorderColor = Color.White;   
             }
            
         }

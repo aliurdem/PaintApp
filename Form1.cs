@@ -17,15 +17,15 @@ namespace PaintApp
 {
     public partial class Form1 : Form
     {
-        public Panel drawAre;
+        public Panel Canvas;
         public List<Shape> shapeList = new List<Shape>();
 
         public Shape currentTemplate;
         public Color currentColor = Color.Black;
         public Shape shapeToDraw = null;
         public Shape selectedShape = null;
-        public int drawAreaRight;
-        public int drawAreaBottom;
+        public int canvasRight;
+        public int canvasBottom;
         public RadioButton rbtnShapeToShine;
         public RadioButton rbtnColorToShie;
 
@@ -40,22 +40,22 @@ namespace PaintApp
             
             
             InitializeComponent();
-            
-            drawAre = drawBox;
+
+            Canvas = drawBox;
             // 9 değerleri border payı olarak çıkartırlmıştır
-            drawAreaRight = drawAre.Width - 7;
-            drawAreaBottom = drawAre.Height - 7;
+            canvasRight = Canvas.Width - 7;
+            canvasBottom = Canvas.Height - 7;
 
             // Drawboxu DoubleBuffered yapmak için gerekli olan kod 
-            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, drawAre, new object[] { true });
-            drawAre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, Canvas, new object[] { true });
+            Canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
-         
 
-            drawAre.MouseDown += DrawBox_MouseDown;
-            drawAre.MouseUp += DrawBox_MouseUp;
-            drawAre.MouseMove += DrawBox_MouseMove;
-            drawAre.Paint += DrawBox_Paint;
+
+            Canvas.MouseDown += DrawBox_MouseDown;
+            Canvas.MouseUp += DrawBox_MouseUp;
+            Canvas.MouseMove += DrawBox_MouseMove;
+            Canvas.Paint += DrawBox_Paint;
         }
 
        
@@ -69,13 +69,13 @@ namespace PaintApp
                     selectedShape = null;
                 }
 
-                if (radioCircle.Checked)
+                if (radioEllipse.Checked)
                 {
-                    shapeToDraw = new Circle(currentColor);
+                    shapeToDraw = new Ellipse(currentColor);
                 }
-                else if (radioSquare.Checked)
+                else if (radioRectangle.Checked)
                 {
-                    shapeToDraw = new Square(currentColor);
+                    shapeToDraw = new Rectangle(currentColor);
                 }
                 else if (radioTriangle.Checked)
                 {
@@ -104,7 +104,6 @@ namespace PaintApp
                 if (selectedShape != null && selectedShape.Contains(e.Location) != true)
                 {
                     selectedShape.IsSelected = false;
-                    
                     selectedShape = null;
                    
                 }
@@ -116,7 +115,6 @@ namespace PaintApp
                         if (selectedShape != null)
                         {
                             selectedShape.IsSelected = false;
-
                         }
                         selectedShape = shape;
                         lastLocation = e.Location;
@@ -126,10 +124,9 @@ namespace PaintApp
                 {
                     selectedShape.IsMoving = true;
                     selectedShape.IsSelected = true;
-                    
                 }
 
-                drawAre.Invalidate();
+                Canvas.Invalidate();
             }
         }
 
@@ -137,14 +134,11 @@ namespace PaintApp
         {
             if (drawing)
             {
-                int maxWidth = drawAreaRight - shapeToDraw.X;
-                int maxHeight = drawAreaBottom - shapeToDraw.Y;
-
+                int maxWidth = canvasRight - shapeToDraw.X;
+                int maxHeight = canvasBottom - shapeToDraw.Y;
 
                 int width = Math.Abs(e.X - shapeToDraw.X);
                 int height = Math.Abs(e.Y - shapeToDraw.Y);
-                
-
                 
                 if (width > maxWidth)
                 {
@@ -157,9 +151,8 @@ namespace PaintApp
 
                 shapeToDraw.Width = width;
                 shapeToDraw.Height = height;
-                
-                
-                drawAre.Invalidate();
+
+                Canvas.Invalidate();
             }
             //Seçili nesne var ise ve mouse sağ click basılı tutuluyor ise nesnenin konumu mouse harekti ile değiştilir
             else if (selectedShape != null && selectedShape.IsMoving)
@@ -175,7 +168,7 @@ namespace PaintApp
                 checkBorders(selectedShape, newX, newY);
 
                 lastLocation = e.Location;
-                drawAre.Invalidate();
+                Canvas.Invalidate();
             }
         }
 
@@ -187,7 +180,7 @@ namespace PaintApp
                 shapeList.Add(shapeToDraw);
                 drawBox.Invalidate();
             }
-            // seçili nesne varsa mouse sağ tık bırakıldığında seçili nesnenin hareket işlemi sonların 
+            // seçili nesne varsa mouse sağ tık bırakıldığında seçili nesnenin hareket işlemi sonlandırır
             if (selectedShape != null && selectedShape.IsMoving)
             {
                 selectedShape.IsMoving = false;
@@ -214,7 +207,7 @@ namespace PaintApp
                     if (shape.IsSelected) {
                         string Type = selectedShape.Type;
 
-                        foreach (ColorRadioButton Crbtn in groupBox4.Controls.OfType<ColorRadioButton>().ToList())
+                        foreach (ColorRadioButton Crbtn in colorBox.Controls.OfType<ColorRadioButton>().ToList())
                         {
                             if (selectedShape.ShapeColor == (Color)Crbtn.BackColor)
                             {
@@ -226,10 +219,10 @@ namespace PaintApp
                         switch (Type)
                         {
                             case "Rectangle":
-                                radioSquare.Checked = true;
+                                radioRectangle.Checked = true;
                                 break;
                             case "Ellipse":
-                                radioCircle.Checked = true;
+                                radioEllipse.Checked = true;
                                 break;
                             case "Triangle":
                                 radioTriangle.Checked = true;
@@ -251,8 +244,8 @@ namespace PaintApp
             drawingMode = false;
             drawing = false;
             shapeToDraw = null;
-            uncheckRadioButton(groupBox1);
-            uncheckRadioButton(groupBox2);
+            uncheckRadioButton(shapeBox);
+            uncheckRadioButton(colorBox);
 
         }
 
@@ -263,8 +256,10 @@ namespace PaintApp
         private void btnClear_Click(object sender, EventArgs e)
         {
             shapeList.Clear();
-            shapeToDraw = null; 
-            drawAre.Invalidate();
+            shapeToDraw = null;
+            uncheckRadioButton(shapeBox);
+            uncheckRadioButton(colorBox);
+            Canvas.Invalidate();
         }
 
         //Seçili nesneyi silen method
@@ -273,6 +268,8 @@ namespace PaintApp
             if (selectedShape != null)
             {
                 shapeList.Remove(selectedShape);
+                uncheckRadioButton(shapeBox);
+                uncheckRadioButton(colorBox);
                 drawBox.Invalidate();
             }
         }
@@ -281,8 +278,8 @@ namespace PaintApp
         private void checkBorders(Shape shape, int newX, int newY)
         {
             //Sınırları Kontrol etme 
-            int maxX = drawAreaRight - selectedShape.Width;
-            int maxY = drawAreaBottom - selectedShape.Height;
+            int maxX = canvasRight - selectedShape.Width;
+            int maxY = canvasBottom - selectedShape.Height;
 
             //Yeni konum belirleme
             newX = Math.Max(5, Math.Min(newX, maxX));
@@ -293,11 +290,6 @@ namespace PaintApp
             selectedShape.Y = newY;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-
-        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -326,6 +318,7 @@ namespace PaintApp
         private void btnOpen_Click(object sender, EventArgs e)
         {
             shapeList.Clear();
+            shapeToDraw = null; 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -343,10 +336,10 @@ namespace PaintApp
                     switch (shapeNode.Name)
                     {
                         case "Rectangle":
-                            shape = new Square(currentColor);
+                            shape = new Rectangle(currentColor);
                             break;
                         case "Ellipse":
-                            shape = new Circle(currentColor);
+                            shape = new Ellipse(currentColor);
                             break;
                         case "Triangle":
                             shape = new Triangle(currentColor);
@@ -359,90 +352,10 @@ namespace PaintApp
                     shapeList.Add(shape);
                 }
 
-                drawAre.Invalidate();
+                Canvas.Invalidate();
             }
         }
 
-        private void colorRadioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        /*
-
-         private void radioSquare_MouseClick(object sender, MouseEventArgs e)
-         {
-             if (selectedShape != null)
-             {
-                 selectedShape.IsSelected = false;
-                 selectedShape = null;
-             }
-             drawingMode = true;
-             radioSquare.Checked = true;
-             drawBox.Invalidate();
-         }
-
-         private void radioCircle_MouseClick(object sender, MouseEventArgs e)
-         {
-             drawingMode = true;
-             if (selectedShape != null)
-             {
-                 selectedShape.IsSelected = false;
-                 selectedShape = null;
-             }
-             radioCircle.Checked = true;
-             drawBox.Invalidate();
-         }
-
-         private void radioTriangle_MouseClick(object sender, MouseEventArgs e)
-         {
-             if (selectedShape != null)
-             {
-                 selectedShape.IsSelected = false;
-                 selectedShape = null;
-             }
-             drawingMode = true;
-             radioTriangle.Checked = true;
-             drawBox.Invalidate();
-         }
-
-         private void radioHexagon_MouseClick(object sender, MouseEventArgs e)
-         {
-             if (selectedShape != null)
-             {
-                 selectedShape.IsSelected = false;
-                 selectedShape = null;
-             }
-             drawingMode = true;
-             radioHexagon.Checked = true;
-             drawBox.Invalidate();
-         }
-
-         private void radioSquare_CheckedChanged(object sender, EventArgs e)
-         {
-             if (radioSquare.Checked)
-             {
-                 radioSquare.FlatAppearance.BorderColor = Color.Red;
-             }
-             else {
-                 radioSquare.FlatAppearance.BorderColor = Color.Gray;
-             }
-         }
-
-         private void radioCircle_CheckedChanged(object sender, EventArgs e)
-         {
-             if (radioCircle.Checked)
-             {
-                 radioCircle.FlatAppearance.BorderColor = Color.Red;
-             }
-             else
-             {
-                 radioCircle.FlatAppearance.BorderColor = Color.Gray;
-             }
-         }
-        */
     }
 
 
