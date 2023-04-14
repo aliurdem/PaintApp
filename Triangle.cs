@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,9 +40,19 @@ namespace PaintApp
             }
 
         }
+        public override bool Contains(Point point)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddPolygon(trianglePoints);
 
-        
+            bool result = path.IsVisible(point);
 
-      
+            path.Dispose();
+            return result;
+        }
+
+
+
+
     }
 }

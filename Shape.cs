@@ -36,17 +36,32 @@ namespace PaintApp
         // Her şeklin sahip olması gereken çizdirme fonksyonu
         public abstract void Draw(Graphics g);
 
-        public bool Contains(Point point)
-        {
-            return X <= point.X && point.X <= X + Width && Y <= point.Y && point.Y <= Y + Width;
-        }
+        // Parametre olarak alınan noktanın şekil üzerinde olup olmadığını belirleyen method
+        public abstract bool Contains(Point point);
         
-        public void Move(int dx, int dy)
+        //Şeklin belirtilen sınırlar içersinde hareketıini sağlar 
+        public void Move(int dx, int dy,int borderRight,int borderBottom)
         {
-            X += dx;
-            Y += dy;
+            // Şeklin yeni koordinatlarını hesaplama
+            int newX = this.X + dx;
+            int newY = this.Y + dy;
+
+            //Sınırları Kontrol etme 
+            int maxX = borderRight - this.Width;
+            int maxY = borderBottom - this.Height;
+
+            //Yeni konum belirleme
+            newX = Math.Max(5, Math.Min(newX, maxX));
+            newY = Math.Max(5, Math.Min(newY, maxY));
+
+            //Yeni konuma taşıma
+            this.X = newX;
+            this.Y = newY;
+            
         }
 
+
+        // Şeklin özelliklerini bir Xml elementine atar
         public void Save(XmlElement element)
         {
             element.SetAttribute("Type", Type);
@@ -58,6 +73,7 @@ namespace PaintApp
 
         }
 
+        // şekle xml elemanından gelen özellirkleri set eder 
         public void Load(XmlNode node)
         {
             Type = node.Attributes["Type"].Value;
@@ -65,7 +81,6 @@ namespace PaintApp
             Y = int.Parse(node.Attributes["Y"].Value);
             Width = int.Parse(node.Attributes["Width"].Value);
             Height = int.Parse(node.Attributes["Height"].Value);
-
             string colorString = node.Attributes["Color"].Value;
             ShapeColor = (Color)new ColorConverter().ConvertFromString(colorString);
 

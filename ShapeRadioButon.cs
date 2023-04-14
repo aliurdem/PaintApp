@@ -23,10 +23,10 @@ namespace PaintApp
 
             this.Checked = true;
 
-            if (parentForm.selectedShape != null)
+            if (parentForm.SelectedShape != null)
             {
-                parentForm.selectedShape.IsSelected = false;
-                parentForm.selectedShape = null;
+                parentForm.SelectedShape.IsSelected = false;
+                parentForm.SelectedShape = null;
             }
 
             parentForm.drawingMode = true;

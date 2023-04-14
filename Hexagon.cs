@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,10 @@ using System.Xml;
 
 namespace PaintApp
 {
-   
+
     internal class Hexagon : Shape
     {
         private Point[] hexagonPoints = new Point[6];
-        
 
         public Hexagon()
         {
@@ -36,11 +36,25 @@ namespace PaintApp
 
             if (this.IsSelected)
             {
+                int frameX = X ;
+                int frameY = Y ;
+                int frameWidth = Width ;
+                int frameHeight = Height ;
+
                 SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Green)); // 50% şeffaflıkta mavi renk 
-                g.FillRectangle(selectedBrush, X - 5, Y - 5, Width + 10, Height + 10);
+                g.FillRectangle(selectedBrush, frameX-5, frameY-5, frameWidth+10, frameHeight+10);
             }
         }
 
-        
+        public override bool Contains(Point point)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.AddPolygon(hexagonPoints);
+
+            bool result = path.IsVisible(point);
+
+            path.Dispose();
+            return result;
+        }
     }
 }

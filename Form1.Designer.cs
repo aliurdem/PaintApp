@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.drawBox = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.fıleBox = new System.Windows.Forms.GroupBox();
-            this.shapeBox = new System.Windows.Forms.GroupBox();
-            this.colorBox = new System.Windows.Forms.GroupBox();
-            this.shapeOperataionBox = new System.Windows.Forms.GroupBox();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnSelectMode = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnDel = new System.Windows.Forms.Button();
+            this.shapeBox = new System.Windows.Forms.GroupBox();
+            this.radioEllipse = new PaintApp.ShapeRadioButon();
+            this.radioTriangle = new PaintApp.ShapeRadioButon();
+            this.radioRectangle = new PaintApp.ShapeRadioButon();
+            this.radioHexagon = new PaintApp.ShapeRadioButon();
+            this.colorBox = new System.Windows.Forms.GroupBox();
             this.colorRadioButton11 = new PaintApp.ColorRadioButton();
             this.colorRadioButton5 = new PaintApp.ColorRadioButton();
             this.colorRadioButton9 = new PaintApp.ColorRadioButton();
@@ -47,10 +48,10 @@
             this.colorRadioButton3 = new PaintApp.ColorRadioButton();
             this.colorRadioButton4 = new PaintApp.ColorRadioButton();
             this.colorRadioButton7 = new PaintApp.ColorRadioButton();
-            this.radioEllipse = new PaintApp.ShapeRadioButon();
-            this.radioTriangle = new PaintApp.ShapeRadioButon();
-            this.radioRectangle = new PaintApp.ShapeRadioButon();
-            this.radioHexagon = new PaintApp.ShapeRadioButon();
+            this.shapeOperataionBox = new System.Windows.Forms.GroupBox();
+            this.btnSelectMode = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
             this.fıleBox.SuspendLayout();
             this.shapeBox.SuspendLayout();
             this.colorBox.SuspendLayout();
@@ -65,6 +66,14 @@
             this.drawBox.Size = new System.Drawing.Size(1407, 894);
             this.drawBox.TabIndex = 7;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1413, 873);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 18;
+            // 
             // fıleBox
             // 
             this.fıleBox.Controls.Add(this.btnOpen);
@@ -75,49 +84,6 @@
             this.fıleBox.TabIndex = 8;
             this.fıleBox.TabStop = false;
             this.fıleBox.Text = "DOSYA İŞLEMLERİ";
-            // 
-            // shapeBox
-            // 
-            this.shapeBox.Controls.Add(this.radioEllipse);
-            this.shapeBox.Controls.Add(this.radioTriangle);
-            this.shapeBox.Controls.Add(this.radioRectangle);
-            this.shapeBox.Controls.Add(this.radioHexagon);
-            this.shapeBox.Location = new System.Drawing.Point(1419, 10);
-            this.shapeBox.Name = "shapeBox";
-            this.shapeBox.Size = new System.Drawing.Size(211, 221);
-            this.shapeBox.TabIndex = 9;
-            this.shapeBox.TabStop = false;
-            this.shapeBox.Text = "Çizim Şekli";
-            // 
-            // colorBox
-            // 
-            this.colorBox.Controls.Add(this.colorRadioButton11);
-            this.colorBox.Controls.Add(this.colorRadioButton5);
-            this.colorBox.Controls.Add(this.colorRadioButton9);
-            this.colorBox.Controls.Add(this.colorRadioButton1);
-            this.colorBox.Controls.Add(this.colorRadioButton8);
-            this.colorBox.Controls.Add(this.colorRadioButton6);
-            this.colorBox.Controls.Add(this.colorRadioButton3);
-            this.colorBox.Controls.Add(this.colorRadioButton4);
-            this.colorBox.Controls.Add(this.colorRadioButton7);
-            this.colorBox.Location = new System.Drawing.Point(1419, 239);
-            this.colorBox.Name = "colorBox";
-            this.colorBox.Size = new System.Drawing.Size(211, 237);
-            this.colorBox.TabIndex = 17;
-            this.colorBox.TabStop = false;
-            this.colorBox.Text = "RENK SEÇİMİ";
-            // 
-            // shapeOperataionBox
-            // 
-            this.shapeOperataionBox.Controls.Add(this.btnSelectMode);
-            this.shapeOperataionBox.Controls.Add(this.btnClear);
-            this.shapeOperataionBox.Controls.Add(this.btnDel);
-            this.shapeOperataionBox.Location = new System.Drawing.Point(1419, 482);
-            this.shapeOperataionBox.Name = "shapeOperataionBox";
-            this.shapeOperataionBox.Size = new System.Drawing.Size(211, 108);
-            this.shapeOperataionBox.TabIndex = 5;
-            this.shapeOperataionBox.TabStop = false;
-            this.shapeOperataionBox.Text = "ŞEKİL İŞLEMLERİ";
             // 
             // btnOpen
             // 
@@ -145,46 +111,96 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnSelectMode
+            // shapeBox
             // 
-            this.btnSelectMode.BackColor = System.Drawing.Color.Transparent;
-            this.btnSelectMode.BackgroundImage = global::PaintApp.Properties.Resources.Hands_One_Finger_icon_Small;
-            this.btnSelectMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSelectMode.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnSelectMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectMode.Location = new System.Drawing.Point(6, 32);
-            this.btnSelectMode.Name = "btnSelectMode";
-            this.btnSelectMode.Size = new System.Drawing.Size(62, 64);
-            this.btnSelectMode.TabIndex = 2;
-            this.btnSelectMode.UseVisualStyleBackColor = false;
-            this.btnSelectMode.Click += new System.EventHandler(this.btnSelectMode_Click);
+            this.shapeBox.Controls.Add(this.radioEllipse);
+            this.shapeBox.Controls.Add(this.radioTriangle);
+            this.shapeBox.Controls.Add(this.radioRectangle);
+            this.shapeBox.Controls.Add(this.radioHexagon);
+            this.shapeBox.Location = new System.Drawing.Point(1419, 10);
+            this.shapeBox.Name = "shapeBox";
+            this.shapeBox.Size = new System.Drawing.Size(211, 221);
+            this.shapeBox.TabIndex = 9;
+            this.shapeBox.TabStop = false;
+            this.shapeBox.Text = "Çizim Şekli";
             // 
-            // btnClear
+            // radioEllipse
             // 
-            this.btnClear.BackColor = System.Drawing.Color.Transparent;
-            this.btnClear.BackgroundImage = global::PaintApp.Properties.Resources.page_edit_icon;
-            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Location = new System.Drawing.Point(143, 32);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(62, 64);
-            this.btnClear.TabIndex = 3;
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.radioEllipse.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioEllipse.BackgroundImage = global::PaintApp.Properties.Resources.Purple_Circle_Flat_icon;
+            this.radioEllipse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.radioEllipse.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.radioEllipse.FlatAppearance.BorderSize = 2;
+            this.radioEllipse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioEllipse.Location = new System.Drawing.Point(106, 116);
+            this.radioEllipse.Name = "radioEllipse";
+            this.radioEllipse.Size = new System.Drawing.Size(96, 92);
+            this.radioEllipse.TabIndex = 1;
+            this.radioEllipse.TabStop = true;
+            this.radioEllipse.UseVisualStyleBackColor = true;
             // 
-            // btnDel
+            // radioTriangle
             // 
-            this.btnDel.BackColor = System.Drawing.Color.Transparent;
-            this.btnDel.BackgroundImage = global::PaintApp.Properties.Resources.trash_icon__1__Small;
-            this.btnDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnDel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDel.Location = new System.Drawing.Point(75, 32);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(62, 64);
-            this.btnDel.TabIndex = 4;
-            this.btnDel.UseVisualStyleBackColor = false;
-            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            this.radioTriangle.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioTriangle.BackgroundImage = global::PaintApp.Properties.Resources.Red_Triangle_Flat_icon_Medium;
+            this.radioTriangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.radioTriangle.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.radioTriangle.FlatAppearance.BorderSize = 2;
+            this.radioTriangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioTriangle.Location = new System.Drawing.Point(6, 116);
+            this.radioTriangle.Name = "radioTriangle";
+            this.radioTriangle.Size = new System.Drawing.Size(96, 92);
+            this.radioTriangle.TabIndex = 2;
+            this.radioTriangle.TabStop = true;
+            this.radioTriangle.UseVisualStyleBackColor = true;
+            // 
+            // radioRectangle
+            // 
+            this.radioRectangle.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioRectangle.BackgroundImage = global::PaintApp.Properties.Resources.Rectangle_tool_icon_Orange;
+            this.radioRectangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.radioRectangle.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.radioRectangle.FlatAppearance.BorderSize = 2;
+            this.radioRectangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioRectangle.Location = new System.Drawing.Point(6, 23);
+            this.radioRectangle.Name = "radioRectangle";
+            this.radioRectangle.Size = new System.Drawing.Size(96, 87);
+            this.radioRectangle.TabIndex = 0;
+            this.radioRectangle.TabStop = true;
+            this.radioRectangle.UseVisualStyleBackColor = true;
+            // 
+            // radioHexagon
+            // 
+            this.radioHexagon.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioHexagon.BackgroundImage = global::PaintApp.Properties.Resources.hexagon_icon_Blue;
+            this.radioHexagon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.radioHexagon.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.radioHexagon.FlatAppearance.BorderSize = 2;
+            this.radioHexagon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioHexagon.Location = new System.Drawing.Point(106, 23);
+            this.radioHexagon.Name = "radioHexagon";
+            this.radioHexagon.Size = new System.Drawing.Size(96, 87);
+            this.radioHexagon.TabIndex = 3;
+            this.radioHexagon.TabStop = true;
+            this.radioHexagon.UseVisualStyleBackColor = true;
+            // 
+            // colorBox
+            // 
+            this.colorBox.Controls.Add(this.colorRadioButton11);
+            this.colorBox.Controls.Add(this.colorRadioButton5);
+            this.colorBox.Controls.Add(this.colorRadioButton9);
+            this.colorBox.Controls.Add(this.colorRadioButton1);
+            this.colorBox.Controls.Add(this.colorRadioButton8);
+            this.colorBox.Controls.Add(this.colorRadioButton6);
+            this.colorBox.Controls.Add(this.colorRadioButton3);
+            this.colorBox.Controls.Add(this.colorRadioButton4);
+            this.colorBox.Controls.Add(this.colorRadioButton7);
+            this.colorBox.Location = new System.Drawing.Point(1419, 239);
+            this.colorBox.Name = "colorBox";
+            this.colorBox.Size = new System.Drawing.Size(211, 237);
+            this.colorBox.TabIndex = 17;
+            this.colorBox.TabStop = false;
+            this.colorBox.Text = "RENK SEÇİMİ";
             // 
             // colorRadioButton11
             // 
@@ -315,71 +331,65 @@
             this.colorRadioButton7.TabStop = true;
             this.colorRadioButton7.UseVisualStyleBackColor = false;
             // 
-            // radioEllipse
+            // shapeOperataionBox
             // 
-            this.radioEllipse.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioEllipse.BackgroundImage = global::PaintApp.Properties.Resources.Purple_Circle_Flat_icon;
-            this.radioEllipse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.radioEllipse.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.radioEllipse.FlatAppearance.BorderSize = 2;
-            this.radioEllipse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioEllipse.Location = new System.Drawing.Point(106, 116);
-            this.radioEllipse.Name = "radioEllipse";
-            this.radioEllipse.Size = new System.Drawing.Size(96, 92);
-            this.radioEllipse.TabIndex = 1;
-            this.radioEllipse.TabStop = true;
-            this.radioEllipse.UseVisualStyleBackColor = true;
+            this.shapeOperataionBox.Controls.Add(this.btnSelectMode);
+            this.shapeOperataionBox.Controls.Add(this.btnClear);
+            this.shapeOperataionBox.Controls.Add(this.btnDel);
+            this.shapeOperataionBox.Location = new System.Drawing.Point(1419, 482);
+            this.shapeOperataionBox.Name = "shapeOperataionBox";
+            this.shapeOperataionBox.Size = new System.Drawing.Size(211, 108);
+            this.shapeOperataionBox.TabIndex = 5;
+            this.shapeOperataionBox.TabStop = false;
+            this.shapeOperataionBox.Text = "ŞEKİL İŞLEMLERİ";
             // 
-            // radioTriangle
+            // btnSelectMode
             // 
-            this.radioTriangle.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioTriangle.BackgroundImage = global::PaintApp.Properties.Resources.Red_Triangle_Flat_icon_Medium;
-            this.radioTriangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.radioTriangle.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.radioTriangle.FlatAppearance.BorderSize = 2;
-            this.radioTriangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioTriangle.Location = new System.Drawing.Point(6, 116);
-            this.radioTriangle.Name = "radioTriangle";
-            this.radioTriangle.Size = new System.Drawing.Size(96, 92);
-            this.radioTriangle.TabIndex = 2;
-            this.radioTriangle.TabStop = true;
-            this.radioTriangle.UseVisualStyleBackColor = true;
+            this.btnSelectMode.BackColor = System.Drawing.Color.Transparent;
+            this.btnSelectMode.BackgroundImage = global::PaintApp.Properties.Resources.Hands_One_Finger_icon_Small;
+            this.btnSelectMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSelectMode.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnSelectMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectMode.Location = new System.Drawing.Point(6, 32);
+            this.btnSelectMode.Name = "btnSelectMode";
+            this.btnSelectMode.Size = new System.Drawing.Size(62, 64);
+            this.btnSelectMode.TabIndex = 2;
+            this.btnSelectMode.UseVisualStyleBackColor = false;
+            this.btnSelectMode.Click += new System.EventHandler(this.btnSelectMode_Click);
             // 
-            // radioRectangle
+            // btnClear
             // 
-            this.radioRectangle.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioRectangle.BackgroundImage = global::PaintApp.Properties.Resources.Rectangle_tool_icon_Orange;
-            this.radioRectangle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.radioRectangle.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.radioRectangle.FlatAppearance.BorderSize = 2;
-            this.radioRectangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioRectangle.Location = new System.Drawing.Point(6, 23);
-            this.radioRectangle.Name = "radioRectangle";
-            this.radioRectangle.Size = new System.Drawing.Size(96, 87);
-            this.radioRectangle.TabIndex = 0;
-            this.radioRectangle.TabStop = true;
-            this.radioRectangle.UseVisualStyleBackColor = true;
+            this.btnClear.BackColor = System.Drawing.Color.Transparent;
+            this.btnClear.BackgroundImage = global::PaintApp.Properties.Resources.page_edit_icon;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Location = new System.Drawing.Point(143, 32);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(62, 64);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // radioHexagon
+            // btnDel
             // 
-            this.radioHexagon.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioHexagon.BackgroundImage = global::PaintApp.Properties.Resources.hexagon_icon_Blue;
-            this.radioHexagon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.radioHexagon.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.radioHexagon.FlatAppearance.BorderSize = 2;
-            this.radioHexagon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioHexagon.Location = new System.Drawing.Point(106, 23);
-            this.radioHexagon.Name = "radioHexagon";
-            this.radioHexagon.Size = new System.Drawing.Size(96, 87);
-            this.radioHexagon.TabIndex = 3;
-            this.radioHexagon.TabStop = true;
-            this.radioHexagon.UseVisualStyleBackColor = true;
+            this.btnDel.BackColor = System.Drawing.Color.Transparent;
+            this.btnDel.BackgroundImage = global::PaintApp.Properties.Resources.trash_icon__1__Small;
+            this.btnDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDel.Location = new System.Drawing.Point(75, 32);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(62, 64);
+            this.btnDel.TabIndex = 4;
+            this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1633, 895);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.fıleBox);
             this.Controls.Add(this.shapeOperataionBox);
             this.Controls.Add(this.colorBox);
@@ -388,11 +398,13 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.fıleBox.ResumeLayout(false);
             this.shapeBox.ResumeLayout(false);
             this.colorBox.ResumeLayout(false);
             this.shapeOperataionBox.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -420,6 +432,7 @@
         private System.Windows.Forms.GroupBox shapeBox;
         private System.Windows.Forms.GroupBox colorBox;
         private System.Windows.Forms.GroupBox shapeOperataionBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 

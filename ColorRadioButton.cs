@@ -27,9 +27,9 @@ namespace PaintApp
             Form1 parentForm = (Form1)this.FindForm();
             if (parentForm != null)
             {
-                parentForm.currentColor = this.BackColor;
-                if (parentForm.selectedShape != null) {
-                    parentForm.selectedShape.ShapeColor = this.BackColor;
+                parentForm.CurrentColor = this.BackColor;
+                if (parentForm.SelectedShape != null) {
+                    parentForm.SelectedShape.ShapeColor = this.BackColor;
                     parentForm.Canvas.Invalidate();
                     
                 }
