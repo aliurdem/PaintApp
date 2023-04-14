@@ -19,6 +19,7 @@ namespace PaintApp
             this.FlatAppearance.BorderColor = Color.White; 
             Text = "";
         }
+
         //ColorRadioButton sınıfın kendi has OnClick özelliği üzerine tıklandığında ait olduğu Form1 türünden formun currentColor özelliğini raadioButtonıun arka plan rengili ile değiştirir 
         //ve eğer formun seçili bir nesnesi varsa üzerine tıklandığında rengin nesnesini arkaplan rengi yapar
         protected override void OnClick(EventArgs e)

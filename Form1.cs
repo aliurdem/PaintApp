@@ -132,6 +132,7 @@ namespace PaintApp
 
         private void DrawBox_MouseMove(object sender, MouseEventArgs e)
         {
+            // nesnenin sınırlar içersinde kalınarak çizilmesini sağlayar 
             if (drawing)
             {
                 int maxWidth = CanvasRight - ShapeToDraw.X;

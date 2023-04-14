@@ -35,7 +35,7 @@ namespace PaintApp
 
             if (this.IsSelected)
             {
-                SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Green)); // 50% şeffaflıkta mavi renk 
+                SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Green)); // 50% şeffaflıkta yeşil renk çerçeve
                 g.FillRectangle(selectedBrush, X - 5, Y - 5, Width + 10, Height + 10);
             }
 

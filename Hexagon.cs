@@ -36,13 +36,8 @@ namespace PaintApp
 
             if (this.IsSelected)
             {
-                int frameX = X ;
-                int frameY = Y ;
-                int frameWidth = Width ;
-                int frameHeight = Height ;
-
-                SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Green)); // 50% şeffaflıkta mavi renk 
-                g.FillRectangle(selectedBrush, frameX-5, frameY-5, frameWidth+10, frameHeight+10);
+                SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Green)); // 50% şeffaflıkta yeşil renk çerçeve
+                g.FillRectangle(selectedBrush, X-5, Y-5, Width+10, Height+10);
             }
         }
 
