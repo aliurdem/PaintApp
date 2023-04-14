@@ -48,13 +48,10 @@ namespace PaintApp
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, Canvas, new object[] { true });
             Canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
-            
-           
             Canvas.MouseDown += Canvas_MouseDown;
             Canvas.MouseUp += Canvar_MouseUp;
             Canvas.MouseMove += Canvas_MouseMove;
             Canvas.Paint += Canvas_Paint;
-
         }
 
     
@@ -227,7 +224,6 @@ namespace PaintApp
             ShapeToDraw = null;
             uncheckRadioButton(shapeBox);
             uncheckRadioButton(colorBox);
-
         }
 
         // Bir Control nesnesinin içerisinde bütün radiobuttonları Checked = false hale getiren method
