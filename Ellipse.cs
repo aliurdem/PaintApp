@@ -38,8 +38,8 @@ namespace PaintApp
         {
             float a = Width / 2;
             float b = Height / 2;
-            float x = point.X - (X + Width / 2);
-            float y = point.Y - (Y + Height / 2);
+            float x = point.X - (X + a);
+            float y = point.Y - (Y + b);
             float value = (float)(Math.Pow(x, 2) / Math.Pow(a, 2) + Math.Pow(y, 2) / Math.Pow(b, 2));
             return value <= 1;
         }
