@@ -26,7 +26,8 @@ namespace PaintApp
             SolidBrush brush = new SolidBrush(ShapeColor);
             g.FillRectangle(brush, X, Y, Width, Height);
 
-            if (this.IsSelected) {
+            if (this.IsSelected)
+            {
                 SolidBrush selectedBrush = new SolidBrush(Color.FromArgb(50, Color.Green)); // 50% şeffaflıkta yeşil renk çerçeve
                 g.FillRectangle(selectedBrush, X-5, Y-5, Width+10, Height+10);
             }

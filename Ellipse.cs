@@ -16,7 +16,6 @@ namespace PaintApp
         public Ellipse() 
         {
             Type = "Ellipse";
-
         }
 
         public Ellipse(Color color) : base(color)

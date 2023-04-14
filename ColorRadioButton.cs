@@ -25,14 +25,12 @@ namespace PaintApp
             if (parentForm != null)
             {
                 parentForm.CurrentColor = this.BackColor;
-                if (parentForm.SelectedShape != null) {
+                if (parentForm.SelectedShape != null) 
+                {
                     parentForm.SelectedShape.ShapeColor = this.BackColor;
                     parentForm.Canvas.Invalidate();
-                    
                 }
-
             }
-           
         }
 
         protected override void OnCheckedChanged(EventArgs e)
