@@ -33,7 +33,6 @@ namespace PaintApp
         private Point lastLocation = Point.Empty;
 
         public bool drawing = false;
-        public bool movingShape = false;
         public bool drawingMode = false;
 
         public Form1()
