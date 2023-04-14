@@ -44,19 +44,19 @@ namespace PaintApp
             CanvasRight = Canvas.Width - 7;
             CanvasBottom = Canvas.Height - 7;
 
-            // Drawboxu DoubleBuffered yapmak için gerekli olan kod 
+            // Canvası DoubleBuffered yapmak için gerekli olan kod 
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, Canvas, new object[] { true });
             Canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
             
-            Canvas.MouseDown += DrawBox_MouseDown;
-            Canvas.MouseUp += DrawBox_MouseUp;
-            Canvas.MouseMove += DrawBox_MouseMove;
-            Canvas.Paint += DrawBox_Paint;
+            Canvas.MouseDown += Canvas_MouseDown;
+            Canvas.MouseUp += Canvar_MouseUp;
+            Canvas.MouseMove += Canvas_MouseMove;
+            Canvas.Paint += Canvas_Paint;
 
         }
 
-        private void DrawBox_MouseDown(object sender, MouseEventArgs e)
+        private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
 
             if (drawingMode)
@@ -110,11 +110,9 @@ namespace PaintApp
                 {
                     if (shape.Contains(e.Location))
                     {
-                        // Önceki selectedShapein selected özelliği false yapar ve etrafındaki çerçeve gider
-                        if (SelectedShape != null)
-                        {
-                            SelectedShape.IsSelected = false;
-                        }
+                        // Önceki selectedShapein IsSelected özelliği false yapar ve etrafındaki çerçeve gider
+                        if (SelectedShape != null) SelectedShape.IsSelected = false;
+
                         SelectedShape = shape;
                         LastLocation = e.Location;
                     }
@@ -130,7 +128,7 @@ namespace PaintApp
             }
         }
 
-        private void DrawBox_MouseMove(object sender, MouseEventArgs e)
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             // nesnenin sınırlar içersinde kalınarak çizilmesini sağlayar 
             if (drawing)
@@ -141,14 +139,8 @@ namespace PaintApp
                 int width = Math.Abs(e.X - ShapeToDraw.X);
                 int height = Math.Abs(e.Y - ShapeToDraw.Y);
 
-                if (width > maxWidth)
-                {
-                    width = maxWidth;
-                }
-                if (height > maxHeight)
-                {
-                    height = maxHeight;
-                }
+                if (width > maxWidth) width = maxWidth;
+                if (height > maxHeight) height = maxHeight;
 
                 ShapeToDraw.Width = width;
                 ShapeToDraw.Height = height;
@@ -168,7 +160,7 @@ namespace PaintApp
             }
         }
 
-        private void DrawBox_MouseUp(object sender, MouseEventArgs e)
+        private void Canvar_MouseUp(object sender, MouseEventArgs e)
         {
             if (drawing)
             {
@@ -177,21 +169,17 @@ namespace PaintApp
                 drawBox.Invalidate();
             }
             // seçili nesne varsa mouse sağ tık bırakıldığında seçili nesnenin hareket işlemi sonlandırır
-            if (SelectedShape != null && SelectedShape.IsMoving)
-            {
-                SelectedShape.IsMoving = false;
-            }
+            if (SelectedShape != null && SelectedShape.IsMoving) SelectedShape.IsMoving = false;
+
         }
 
-        private void DrawBox_Paint(object sender, PaintEventArgs e)
+        private void Canvas_Paint(object sender, PaintEventArgs e)
         {
 
             Graphics g = e.Graphics;
 
             //Eğer çizim işlemi yapılıyorsa o anda seçili olan şablona göre şekli çizdiren kısım  
-            if (ShapeToDraw != null)
-                ShapeToDraw.Draw(g);
-
+            if (ShapeToDraw != null) ShapeToDraw.Draw(g);
 
             // Çizilen bütün neslerin tutulduğu shapeList nesnesinden shape türünden nesnelerin çizdirilmesini sağlayan döngü ayrcıa seçili şeklin özelliklerini işareteyen yapı
             if (ShapeList.Count != 0)
@@ -221,13 +209,7 @@ namespace PaintApp
 
                         }
 
-                        foreach (ColorRadioButton Crbtn in colorBox.Controls.OfType<ColorRadioButton>().ToList())
-                        {
-                            if (SelectedShape.ShapeColor == (Color)Crbtn.BackColor)
-                            {
-                                Crbtn.Checked = true;
-                            }
-                        }
+                        colorBox.Controls.OfType<ColorRadioButton>().ToList().ForEach(Crbtn => Crbtn.Checked = (SelectedShape.ShapeColor == (Color)Crbtn.BackColor));
 
                     }
                 }
@@ -266,7 +248,7 @@ namespace PaintApp
                 ShapeList.Remove(SelectedShape);
                 uncheckRadioButton(shapeBox);
                 uncheckRadioButton(colorBox);
-                drawBox.Invalidate();
+                Canvas.Invalidate();
             }
         }
         
@@ -337,10 +319,6 @@ namespace PaintApp
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 
        
