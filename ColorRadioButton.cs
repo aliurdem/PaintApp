@@ -13,10 +13,6 @@ namespace PaintApp
         public ColorRadioButton()
         {
             this.Appearance = Appearance.Button;
-            this.AutoSize = false; 
-            this.FlatStyle = FlatStyle.Flat;
-            this.FlatAppearance.BorderSize = 2;
-            this.FlatAppearance.BorderColor = Color.White; 
             Text = "";
         }
 
