@@ -49,6 +49,7 @@ namespace PaintApp
             Canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
             
+           
             Canvas.MouseDown += Canvas_MouseDown;
             Canvas.MouseUp += Canvar_MouseUp;
             Canvas.MouseMove += Canvas_MouseMove;
@@ -56,9 +57,10 @@ namespace PaintApp
 
         }
 
+    
+
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (drawingMode)
             {
                 if (SelectedShape != null)
@@ -89,9 +91,8 @@ namespace PaintApp
                     drawing = true;
                     ShapeToDraw.X = e.X;
                     ShapeToDraw.Y = e.Y;
-                    drawBox.Invalidate();
+                    Canvas.Invalidate();
                 }
-
             }
 
             // eğer ekran üzerinde tıklanan nokta bir şekil üzerinde ise o şekli selectedShape olarak tanımlar
@@ -130,6 +131,8 @@ namespace PaintApp
 
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
+            label2.Text = $"Mouse Location(X,Y) {e.Location.X},{e.Location.Y}";
+
             // nesnenin sınırlar içersinde kalınarak çizilmesini sağlayar 
             if (drawing)
             {
@@ -319,6 +322,10 @@ namespace PaintApp
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
        
