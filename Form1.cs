@@ -28,9 +28,8 @@ namespace PaintApp
         public int CanvasRight { get; set; }
         public int CanvasBottom { get; set; }
 
+        public Point LastLocation { get; set; } = Point.Empty;
 
-
-        private Point lastLocation = Point.Empty;
 
         public bool drawing = false;
         public bool drawingMode = false;
@@ -117,7 +116,7 @@ namespace PaintApp
                             SelectedShape.IsSelected = false;
                         }
                         SelectedShape = shape;
-                        lastLocation = e.Location;
+                        LastLocation = e.Location;
                     }
                 }
 
@@ -158,12 +157,12 @@ namespace PaintApp
             //Seçili nesne var ise ve mouse sağ click basılı tutuluyor ise nesnenin konumu mouse harekti ile değiştilir
             else if (SelectedShape != null && SelectedShape.IsMoving)
             {
-                int dx = e.Location.X - lastLocation.X;
-                int dy = e.Location.Y - lastLocation.Y;
+                int dx = e.Location.X - LastLocation.X;
+                int dy = e.Location.Y - LastLocation.Y;
 
                 SelectedShape.Move(dx, dy, CanvasRight, CanvasBottom);
-                
-                lastLocation = e.Location;
+
+                LastLocation = e.Location;
                 Canvas.Invalidate();
             }
         }
